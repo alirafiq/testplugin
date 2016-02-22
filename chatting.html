@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <script src="/js/jquery-1.11.2.min.js" ></script>
+        <script src="quickblox.min.js" ></script>
+    <script >
+var config = {
+  endpoints: {
+    api: "http://localhost:45246"
+  },
+  ssl: false,
+  debug: true
+};
+ 
+QB.init(3477, 'ChRnwEJ3WzxH9O4', 'AS546kpUQ2tfbvv', config);      
+var options = {
+  muted: true,
+  mirror: true
+};
+QB.webrtc.getUserMedia({audio: true, video: true, elemId: 'localVideo', options: options}, function(err, stream) {
+  // callback
+});
+QB.webrtc.onRemoteStreamListener = function(remoteStream) {
+  // attach the remote stream to DOM element
+  QB.webrtc.attachMediaStream('remoteVideo', remoteStream);
+};   
+            </script>
+
+        <meta charset="utf-8" />
+        <title></title>
+    </head>
+    <body>
+        <div style="width:100px; height: 100px" id="localVideo"></div>
+        
+        <div style="width:100px; height: 100px" id="remoteVideo"></div>
+    </body>
+    
+    
+</html>
